@@ -6,6 +6,21 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient()
 
 export const GET = async () => {
+  const user_id = 1
+  const data = await prisma.repo.findMany({
+    select: {
+      repo_id: true,
+      name: true,
+    },
+    where: {
+      users: {
+        user_id: user_id
+      }
+    }
+  })
+
+  console.log(data)
+
   return new NextResponse(
     JSON.stringify(users),
     {status: 200}

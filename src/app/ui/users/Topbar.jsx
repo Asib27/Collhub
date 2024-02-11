@@ -19,7 +19,7 @@ const Topbar = () => {
               value={""}
               onChange={(e) => {}}
               type="text"
-              className="px-1 py-1 outline-none content2 border-b text-sm w-64 block"
+              className="px-1 py-1 outline-none content2 border-b text-sm w-64 block bg-transparent"
               placeholder={"Search"}
             />
           </div>

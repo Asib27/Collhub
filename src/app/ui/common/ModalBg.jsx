@@ -1,5 +1,5 @@
 import { ModalContext } from "@/contexts/ModalContext";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useContext } from "react";
 
 const ModalBg = () => {

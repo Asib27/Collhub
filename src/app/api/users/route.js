@@ -5,6 +5,20 @@ import { runShellCommand } from "../shell";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient()
 
+/**
+ * @swagger
+ * /api/users:
+ *   get:
+ *     description: get all the users
+ *     responses:
+ *       200:
+ *         description: {user1, user2, user3}
+ *   post:
+ *     description: get all the users
+ *     responses:
+ *       200:
+ *         description: {user1, user2, user3}
+ */
 export const GET = async () => {
   const users = await prisma.user.findMany();
   return new NextResponse(

@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&family=Karla:wght@300;400;500;600;700&family=Space+Mono:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@layer components {
+  .content-1 {
+    @apply text-slate-950;
+  }
+
+  .content-2 {
+    @apply text-slate-800;
+  }
+
+  .content-3 {
+    @apply text-slate-600;
+  }
+
+  .content-4 {
+    @apply text-slate-100;
+  }
+
+  .content-highlight {
+    @apply text-emerald-700;
+  }
+
+  .bg-1 {
+    @apply bg-emerald-50 text-slate-950;
+  }
+
+  .bg-2 {
+    @apply bg-emerald-100 text-slate-950;
+  }
+
+  .bg-accent-1 {
+    @apply bg-green-600 text-slate-50;
+  }
+
+  .bg-accent-2 {
+    @apply bg-slate-800 text-slate-50;
+  }
+
+  .center {
+    @apply flex flex-col items-center justify-center;
+  }
+}
+
+.font-space-mono {
+  font-family: "Space Mono", monospace;
+}
+
+.font-rubik {
+  font-family: "Rubik", sans-serif;
+}
+
+.font-bangla {
+  font-family: "Noto Serif Bengali", serif;
+}
+
+.font-karla {
+  font-family: "Karla", sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--content-3);
+  opacity: 0.5;
+  border-radius: 3px;
+}

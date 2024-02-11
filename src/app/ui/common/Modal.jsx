@@ -2,6 +2,7 @@ import { ModalContext } from "@/contexts/ModalContext";
 import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useContext } from "react";
+import { IoMdClose } from "react-icons/io";
 
 const Modal = ({ children, className }) => {
   const { modal, setModal } = useContext(ModalContext);
@@ -11,7 +12,7 @@ const Modal = ({ children, className }) => {
       {modal && (
         <motion.div
           className={cn(
-            "bg-slate-200 w-md z-50 absolute top-0 bottom-0 left-0 right-0 m-auto max-w-lg h-[560px] rounded-lg shadow-xl p-8 pt-12 overflow-auto",
+            "bg-1 w-md z-50 absolute top-0 bottom-0 left-0 right-0 m-auto max-w-lg h-[560px] rounded-lg shadow-xl p-8 pt-12 overflow-auto",
             className
           )}
           initial={{ opacity: 0.0 }}

@@ -1,5 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
   provider  = "postgresql"
@@ -7,16 +8,12 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model user {
-  user_id  Int         @id @default(autoincrement())
-  name     String      @unique @db.VarChar(50)
+  user_id  Int          @id @default(autoincrement())
+  name     String       @unique @db.VarChar(50)
   password String
-  email    String      @unique @db.VarChar(255)
-  picture  String      @default("https://i.ibb.co/0jkPLQZ/avatar.png")
+  email    String       @unique @db.VarChar(255)
+  picture  String       @default("https://i.ibb.co/0jkPLQZ/avatar.png")
   teams    team_user[]
   repos    repo_user[]
   skills   user_skill[]
@@ -32,11 +29,13 @@ model team {
 
 
 model team_user {
-  user    user @relation(fields: [user_id], references: [user_id])
-  user_id Int
-  team    team @relation(fields: [team_id], references: [team_id])
-  team_id Int
-  role    String  @db.VarChar(50)
+  user_id     Int
+  team_id     Int
+  role        String @db.VarChar(50)
+  user        user?  @relation(fields: [userUser_id], references: [user_id])
+  userUser_id Int?
+  team        team?  @relation(fields: [teamTeam_id], references: [team_id])
+  teamTeam_id Int?
 
   @@id([user_id, team_id])
 }
@@ -57,17 +56,19 @@ enum Repo_type {
 }
 
 model repo_user {
-  user    user @relation(fields: [user_id], references: [user_id])
-  user_id Int
-  repo    repo @relation(fields: [repo_id], references: [repo_id])
-  repo_id Int
-  role    String  @db.VarChar(50)
+  user_id     Int
+  repo_id     Int
+  role        String @db.VarChar(50)
+  user        user?  @relation(fields: [userUser_id], references: [user_id])
+  userUser_id Int?
+  repo        repo?  @relation(fields: [repoRepo_id], references: [repo_id])
+  repoRepo_id Int?
 
   @@id([repo_id, user_id])
 }
 
 model repo_team {
-  team   team @relation(fields: [team_id], references: [team_id])
+  team    team @relation(fields: [team_id], references: [team_id])
   team_id Int
   repo    repo @relation(fields: [repo_id], references: [repo_id])
   repo_id Int
@@ -75,18 +76,17 @@ model repo_team {
   @@id([repo_id, team_id])
 }
 
-
 model skill {
-  skill_id Int         @id @default(autoincrement())
-  name    String       @db.VarChar(50)
-  description String  @db.VarChar(300)
-  users  user_skill[]
+  skill_id    Int          @id @default(autoincrement())
+  name        String       @db.VarChar(50)
+  description String       @db.VarChar(300)
+  users       user_skill[]
 }
 
 model user_skill {
-  user    user @relation(fields: [user_id], references: [user_id])
-  user_id Int
-  skill   skill @relation(fields: [skill_id], references: [skill_id])
+  user     user  @relation(fields: [user_id], references: [user_id])
+  user_id  Int
+  skill    skill @relation(fields: [skill_id], references: [skill_id])
   skill_id Int
 
   @@id([user_id, skill_id])

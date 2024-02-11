@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
         </div>
         <ModalContextProvider>
           <ModalProvider>
-            <div className="font-rubik relative min-h-screen bg1 content1">
+            <div className="font-rubik relative min-h-screen bg-1 content-1">
               {children}
               <ModalBg />
             </div>

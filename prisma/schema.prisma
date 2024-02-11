@@ -19,6 +19,7 @@ model user {
   picture  String      @default("https://i.ibb.co/0jkPLQZ/avatar.png")
   teams    team_user[]
   repos    repo_user[]
+  skills   user_skill[]
 }
 
 model team {
@@ -70,4 +71,14 @@ model skill {
   skill_id Int         @id @default(autoincrement())
   name    String       @db.VarChar(50)
   description String  @db.VarChar(300)
+  users  user_skill[]
+}
+
+model user_skill {
+  user    user @relation(fields: [user_id], references: [user_id])
+  user_id Int
+  skill   skill @relation(fields: [skill_id], references: [skill_id])
+  skill_id Int
+
+  @@id([user_id, skill_id])
 }

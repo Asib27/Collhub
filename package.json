@@ -15,9 +15,11 @@
   "dependencies": {
     "@prisma/client": "^5.9.1",
     "next": "14.1.0",
+    "next-swagger-doc": "^0.4.0",
     "prisma": "^5.9.1",
     "react": "^18",
     "react-dom": "^18",
+    "swagger-ui-react": "^5.11.3",
     "yarn": "^1.22.21"
   },
   "devDependencies": {

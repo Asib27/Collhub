@@ -7,22 +7,28 @@ const prisma = new PrismaClient()
 
 export const GET = async () => {
   const user_id = 1
-  const data = await prisma.repo.findMany({
+  const data = await prisma.repo_user.findMany({
     select: {
-      repo_id: true,
-      name: true,
+      repo_id: true
     },
     where: {
-      users: {
-        user_id: user_id
-      }
+      user_id: user_id
+    }
+  })
+  const repo_ids = data.map(d => d.repo_id)
+
+  const repos = await prisma.repo.findMany({
+    select: {
+      repo_id: true,
+      name: true
+    },
+    where: {
+      repo_id: { in: repo_ids }
     }
   })
 
-  console.log(data)
-
   return new NextResponse(
-    JSON.stringify(users),
+    JSON.stringify(repos),
     {status: 200}
   )
 }
@@ -30,7 +36,7 @@ export const GET = async () => {
 export const POST = async (req, res) => {
   const body = await req.json(); 
   return new NextResponse(
-    JSON.stringify(users),
+    JSON.stringify(data),
     {status: 200}
   )
 }

@@ -27,6 +27,7 @@ model team {
   repos   repo_team[]
 }
 
+
 model team_user {
   user_id     Int
   team_id     Int
@@ -42,8 +43,16 @@ model team_user {
 model repo {
   repo_id Int         @id @default(autoincrement())
   name    String      @db.VarChar(50)
+  type  Repo_type  @default(code)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
   users   repo_user[]
   teams   repo_team[]
+}
+
+enum Repo_type {
+  code
+  design
 }
 
 model repo_user {

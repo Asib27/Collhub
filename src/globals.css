@@ -50,6 +50,22 @@
   .center {
     @apply flex flex-col items-center justify-center;
   }
+
+  .btn {
+    @apply px-4 py-2 rounded-full shadow hover:shadow-xl cursor-pointer duration-300 text-center text-lg;
+  }
+
+  .primary-btn {
+    @apply btn accent1 border-2 border-green-600 content-4;
+  }
+
+  .secondary-btn {
+    @apply btn border-2 border-green-600 content-1;
+  }
+
+  .section-header {
+    @apply uppercase tracking-[0.25rem] text-lg font-rubik;
+  }
 }
 
 .font-space-mono {

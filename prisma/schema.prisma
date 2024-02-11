@@ -12,9 +12,42 @@ generator client {
 }
 
 model user {
-  user_id  Int    @id @default(autoincrement())
-  name     String @db.VarChar(50)
+  user_id  Int         @id @default(autoincrement())
+  name     String      @unique @db.VarChar(50)
   password String
-  email    String @unique @db.VarChar(255)
-  picture  String @default("https://i.ibb.co/0jkPLQZ/avatar.png")
+  email    String      @unique @db.VarChar(255)
+  picture  String      @default("https://i.ibb.co/0jkPLQZ/avatar.png")
+  teams    team_user[]
+  repos    repo_user[]
+}
+
+model team {
+  team_id Int         @id @default(autoincrement())
+  name    String      @unique @db.VarChar(50)
+  picture String      @default("https://i.ibb.co/0jkPLQZ/avatar.png")
+  users   team_user[]
+}
+
+model team_user {
+  user    user @relation(fields: [user_id], references: [user_id])
+  user_id Int
+  team    team @relation(fields: [team_id], references: [team_id])
+  team_id Int
+
+  @@id([user_id, team_id])
+}
+
+model repo {
+  repo_id Int         @id @default(autoincrement())
+  name    String      @db.VarChar(50)
+  users   repo_user[]
+}
+
+model repo_user {
+  user    user @relation(fields: [user_id], references: [user_id])
+  user_id Int
+  repo    repo @relation(fields: [repo_id], references: [repo_id])
+  repo_id Int
+
+  @@id([repo_id, user_id])
 }

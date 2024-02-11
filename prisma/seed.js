@@ -51,7 +51,7 @@ async function addRepo() {
 
 async function addRepoUser() {
   try{
-    prisma.repo_user.createMany({
+    await prisma.repo_user.createMany({
       data: [
         {
           user_id: 1,
@@ -71,7 +71,7 @@ async function addRepoUser() {
       ]
     })
   }catch(err){
-
+    console.log(err)
   }
 }
 

@@ -26,6 +26,7 @@ model team {
   name    String      @unique @db.VarChar(50)
   picture String      @default("https://i.ibb.co/0jkPLQZ/avatar.png")
   users   team_user[]
+  repos   repo_team[]
 }
 
 model team_user {
@@ -41,6 +42,7 @@ model repo {
   repo_id Int         @id @default(autoincrement())
   name    String      @db.VarChar(50)
   users   repo_user[]
+  teams   repo_team[]
 }
 
 model repo_user {
@@ -50,4 +52,13 @@ model repo_user {
   repo_id Int
 
   @@id([repo_id, user_id])
+}
+
+model repo_team {
+  team   team @relation(fields: [team_id], references: [team_id])
+  team_id Int
+  repo    repo @relation(fields: [repo_id], references: [repo_id])
+  repo_id Int
+
+  @@id([repo_id, team_id])
 }

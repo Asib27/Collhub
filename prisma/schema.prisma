@@ -9,56 +9,60 @@ datasource db {
 }
 
 model user {
-  user_id    Int          @id @default(autoincrement())
-  name       String       @unique @db.VarChar(50)
-  password   String
-  email      String       @unique @db.VarChar(255)
-  picture    String       @default("https://i.ibb.co/0jkPLQZ/avatar.png")
-  repos      repo_user[]
-  teams      team_user[]
-  user_skill user_skill[]
+  user_id  Int          @id @default(autoincrement())
+  name     String       @unique @db.VarChar(50)
+  password String
+  email    String       @unique @db.VarChar(255)
+  picture  String       @default("https://i.ibb.co/0jkPLQZ/avatar.png")
+  teams    team_user[]
+  repos    repo_user[]
+  skills   user_skill[]
 }
 
 model team {
-  team_id   Int         @id @default(autoincrement())
-  name      String      @unique @db.VarChar(50)
-  picture   String      @default("https://i.ibb.co/0jkPLQZ/avatar.png")
-  repo_team repo_team[]
-  users     team_user[]
+  team_id Int         @id @default(autoincrement())
+  name    String      @unique @db.VarChar(50)
+  picture String      @default("https://i.ibb.co/0jkPLQZ/avatar.png")
+  users   team_user[]
+  repos   repo_team[]
 }
 
 model team_user {
-  user_id Int
-  team_id Int
-  role    String @db.VarChar(50)
-  team    team   @relation(fields: [team_id], references: [team_id])
-  user    user   @relation(fields: [user_id], references: [user_id])
+  user_id     Int
+  team_id     Int
+  role        String @db.VarChar(50)
+  user        user?  @relation(fields: [userUser_id], references: [user_id])
+  userUser_id Int?
+  team        team?  @relation(fields: [teamTeam_id], references: [team_id])
+  teamTeam_id Int?
 
   @@id([user_id, team_id])
 }
 
 model repo {
-  repo_id   Int         @id @default(autoincrement())
-  name      String      @db.VarChar(50)
-  repo_team repo_team[]
-  users     repo_user[]
+  repo_id Int         @id @default(autoincrement())
+  name    String      @db.VarChar(50)
+  users   repo_user[]
+  teams   repo_team[]
 }
 
 model repo_user {
-  user_id Int
-  repo_id Int
-  role    String @db.VarChar(50)
-  repo    repo   @relation(fields: [repo_id], references: [repo_id])
-  user    user   @relation(fields: [user_id], references: [user_id])
+  user_id     Int
+  repo_id     Int
+  role        String @db.VarChar(50)
+  user        user?  @relation(fields: [userUser_id], references: [user_id])
+  userUser_id Int?
+  repo        repo?  @relation(fields: [repoRepo_id], references: [repo_id])
+  repoRepo_id Int?
 
   @@id([repo_id, user_id])
 }
 
 model repo_team {
-  team_id Int
-  repo_id Int
-  repo    repo @relation(fields: [repo_id], references: [repo_id])
   team    team @relation(fields: [team_id], references: [team_id])
+  team_id Int
+  repo    repo @relation(fields: [repo_id], references: [repo_id])
+  repo_id Int
 
   @@id([repo_id, team_id])
 }
@@ -67,14 +71,14 @@ model skill {
   skill_id    Int          @id @default(autoincrement())
   name        String       @db.VarChar(50)
   description String       @db.VarChar(300)
-  user_skill  user_skill[]
+  users       user_skill[]
 }
 
 model user_skill {
-  user_id  Int
-  skill_id Int
-  skill    skill @relation(fields: [skill_id], references: [skill_id])
   user     user  @relation(fields: [user_id], references: [user_id])
+  user_id  Int
+  skill    skill @relation(fields: [skill_id], references: [skill_id])
+  skill_id Int
 
   @@id([user_id, skill_id])
 }

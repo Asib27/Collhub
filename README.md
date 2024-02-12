@@ -14,6 +14,7 @@ yarn run dev
 
 #### FRONTEND TODO
 
-- [ ] add team / repo
-- [ ] repo / team page - add people
+- [x] add team / repo
+- [ ] repo page
+- [ ] team page - add people
 - [ ]

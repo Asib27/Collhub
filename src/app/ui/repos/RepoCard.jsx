@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { FiStar } from "react-icons/fi";
 
@@ -7,7 +8,12 @@ const RepoCard = () => {
       {/* left */}
       <div className="mr-auto">
         <div className="flex items-center gap-x-4">
-          <h3 className="font-semibold">Repository Name</h3>
+          <Link
+            href={`/user/repo/${"repoId"}`}
+            className="font-semibold hover:content-highlight transition duration-300"
+          >
+            Repository Name
+          </Link>
           <div className="px-2 py-[2px] rounded-full border border-emerald-900 text-xs">
             Private
           </div>

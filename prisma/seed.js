@@ -76,11 +76,37 @@ async function addRepoUser() {
 }
 
 
+async function addTeam() {
+  await prisma.team.upsert({
+    where: { team_id: 1},
+    create: {
+      name: 'qwerty'
+    },
+    update: {}
+  })
+
+  await prisma.team.upsert({
+    where: { team_id: 2},
+    create: {
+      name: 'my group'
+    },
+    update: {}
+  })
+
+  await prisma.team.upsert({
+    where: { team_id: 3},
+    create: {
+      name: 'asdfg'
+    },
+    update: {}
+  })
+}
 
 async function addData() {
   await addUser()
   await addRepo()
   await addRepoUser()
+  await addTeam()
 }
 
 addData()

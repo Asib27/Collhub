@@ -20,7 +20,8 @@ export const GET = async () => {
   const repos = await prisma.repo.findMany({
     select: {
       repo_id: true,
-      name: true
+      name: true,
+      type: true
     },
     where: {
       repo_id: { in: repo_ids }
@@ -34,9 +35,34 @@ export const GET = async () => {
 }
 
 export const POST = async (req, res) => {
+  const user_id = 1
   const body = await req.json(); 
+
+  const repo = await prisma.repo.create({
+    data: {
+      name: body.name,
+      type: body.type
+    },
+    select: {
+      repo_id: true
+    }
+  })
+
+  const role_user = await prisma.repo_user.create({
+    data: {
+      repo_id: repo.repo_id,
+      user_id: user_id,
+      role: 'author'
+    }
+  })
+
+  runShellCommand(`mkdir -p files/${user_id}/${body.name}`)
+  // runShellCommand(`cd files/${user_id}/${body.name} ; git submodule init`)
+
   return new NextResponse(
-    JSON.stringify(data),
+    JSON.stringify({
+      status: 'success'
+    }),
     {status: 200}
   )
 }

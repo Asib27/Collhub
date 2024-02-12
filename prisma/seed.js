@@ -35,7 +35,8 @@ async function addRepo() {
   await prisma.repo.upsert({
     where: { repo_id: 2},
     create: {
-      name: 'myproject'
+      name: 'myproject',
+      type: "design"
     },
     update: {}
   })

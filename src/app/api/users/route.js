@@ -48,7 +48,7 @@ export const POST = async (req) => {
     )
   }
 
-  runShellCommand(`mkdir -p files/${body.name}`)
+  runShellCommand(`mkdir -p files/${data.user_id}`)
   const output = runShellCommand('echo $?')
 
   if(output === '0\n'){

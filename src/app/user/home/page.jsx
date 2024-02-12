@@ -1,7 +1,9 @@
 "use client";
 
 import Modal from "@/app/ui/common/Modal";
+import AddRepo from "@/app/ui/repos/AddRepo";
 import RepoCard from "@/app/ui/repos/RepoCard";
+import AddTeam from "@/app/ui/teams/AddTeam";
 import TeamCard from "@/app/ui/teams/TeamCard";
 import { ModalContext } from "@/contexts/ModalContext";
 import React, { useContext, useState } from "react";
@@ -24,8 +26,16 @@ const UserHome = () => {
 
   return (
     <div className="">
-      {showModal === "add-team" && <Modal>Teams</Modal>}
-      {showModal === "add-repo" && <Modal>Repo</Modal>}
+      {showModal === "add-team" && (
+        <Modal>
+          <AddTeam />
+        </Modal>
+      )}
+      {showModal === "add-repo" && (
+        <Modal>
+          <AddRepo />
+        </Modal>
+      )}
       {/* teams */}
       <section>
         <div className="flex gap-x-4 items-center mb-8">

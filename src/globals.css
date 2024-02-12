@@ -52,19 +52,23 @@
   }
 
   .btn {
-    @apply px-4 py-2 rounded-full shadow hover:shadow-xl cursor-pointer duration-300 text-center text-lg;
+    @apply px-4 py-2 rounded shadow hover:shadow-xl cursor-pointer duration-300 text-center text-lg;
   }
 
   .primary-btn {
-    @apply btn accent1 border-2 border-green-600 content-4;
+    @apply btn bg-accent-2 border-2 border-slate-800 content-4;
   }
 
   .secondary-btn {
-    @apply btn border-2 border-green-600 content-1;
+    @apply btn border-2 border-slate-800 content-1;
   }
 
   .section-header {
     @apply uppercase tracking-[0.25rem] text-lg font-rubik;
+  }
+
+  .input {
+    @apply px-3 py-2.5 bg-transparent rounded outline-none border-slate-400 border-2 focus:border-emerald-600 content-2 mb-6;
   }
 }
 

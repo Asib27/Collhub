@@ -25,7 +25,7 @@ yarn run dev
 
 #### API needed
 
-- [ ] list of teams of an user
+- [x] list of teams of an user
 
 ```
 [

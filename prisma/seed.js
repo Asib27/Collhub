@@ -21,6 +21,16 @@ async function addUser() {
     },
     update: {}
   })
+
+  await prisma.user.upsert({
+    where: { user_id: 3},
+    create: {
+      name: 'mohaimon',
+      password: '123',
+      email: 'mohaimon@gmail.com',
+    },
+    update: {}
+  })
 }
 
 async function addRepo() {
@@ -147,6 +157,32 @@ async function addTeamUser() {
   }
 }
 
+async function addTeamRepo() {
+  try {
+    await prisma.repo_team.createMany({
+      data: [
+        {
+          team_id: 1,
+          repo_id: 1,
+        },
+        {
+          team_id: 1,
+          repo_id: 2,
+        },
+        {
+          team_id: 2,
+          repo_id: 2,
+        },
+        {
+          team_id: 2,
+          repo_id: 3,
+        },
+      ],
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 
 async function addData() {
@@ -155,6 +191,7 @@ async function addData() {
   await addRepoUser()
   await addTeam()
   await addTeamUser()
+  await addTeamRepo()
 }
 
 addData()

@@ -22,7 +22,7 @@ const prisma = new PrismaClient()
 export const GET = async (req, {params}) => {
   const { user_id } = params;
   
-  console.log(user_id);
+  // console.log(user_id);
 
   const teams = await prisma.team_user.findMany({
     where: {
@@ -38,7 +38,7 @@ export const GET = async (req, {params}) => {
     },
   });
 
-  console.log(teams);
+  // console.log(teams);
 
   const response = teams.map((teamUser) => ({
     team_id: teamUser.team.team_id,

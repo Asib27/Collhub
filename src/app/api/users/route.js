@@ -20,7 +20,14 @@ const prisma = new PrismaClient()
  *         description: {user1, user2, user3}
  */
 export const GET = async () => {
-  const users = await prisma.user.findMany();
+  const users = await prisma.user.findMany({
+    select: {
+      user_id: true, // replace with your actual fields
+      name: true,
+      email: true,
+      picture: true,
+    },
+  });
   return new NextResponse(
     JSON.stringify(users),
     {status: 200}

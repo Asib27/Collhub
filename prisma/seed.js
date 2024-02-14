@@ -68,7 +68,12 @@ async function addRepoUser() {
           user_id: 2,
           repo_id: 2,
           role: 'author'
-        }
+        },
+        {
+          user_id: 2,
+          repo_id: 3,
+          role: 'contributor'
+        },
       ]
     })
   }catch(err){
@@ -101,13 +106,55 @@ async function addTeam() {
     },
     update: {}
   })
+
+  await prisma.team.upsert({
+    where: { team_id: 4},
+    create: {
+      name: 'collabhub'
+    },
+    update: {}
+  })
 }
+
+async function addTeamUser() {
+  try{
+    await prisma.team_user.createMany({
+      data: [
+        {
+          user_id: 1,
+          team_id: 1,
+          role: 'admin'
+        },
+        {
+          user_id: 1,
+          team_id: 2,
+          role: 'member'
+        },
+        {
+          user_id: 2,
+          team_id: 2,
+          role: 'admin'
+        },
+        {
+          user_id: 2,
+          team_id: 1,
+          role: 'member'
+        },
+      ]
+    })
+  }catch(err){
+    console.log(err)
+  }
+}
+
+
 
 async function addData() {
   await addUser()
   await addRepo()
   await addRepoUser()
   await addTeam()
+  await addTeamUser()
 }
 
 addData()

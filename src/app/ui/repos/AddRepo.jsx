@@ -45,9 +45,7 @@ const AddRepo = () => {
           value={type}
           className="input w-full"
         >
-          <option value="coding" className="p-2">
-            Coding
-          </option>
+          <option value="coding">Coding</option>
           <option value="design">Design</option>
         </select>
 

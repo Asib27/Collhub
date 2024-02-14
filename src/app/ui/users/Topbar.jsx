@@ -28,8 +28,8 @@ const Topbar = () => {
         <div className="flex items-center gap-x-4">
           {/* TODO: update link */}
           <Link href={`/user/home`}>
-            <div
-              src={""}
+            <img
+              src={"/avatar.png"}
               alt="profile"
               className="w-12 h-12 p-[2px] border rounded-full left-4 bg-accent-1"
             />

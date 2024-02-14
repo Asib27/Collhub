@@ -16,7 +16,7 @@ const Leftbar = ({ active = "" }) => {
   return (
     <div className="flex flex-col items-start mt-16">
       <div className="mb-12 font-semibold text-xl pl-8 flex items-center gap-x-4">
-        <div className="w-6 h-8 rounded-full bg-accent-1"></div>
+        <img src={"/logo.png"} alt={""} className="w-8 h-8" />
         <h3 className="block">Collhub</h3>
       </div>
 

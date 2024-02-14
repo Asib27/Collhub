@@ -80,7 +80,7 @@ const SingleMessage = ({ own = false }) => {
           illum, autem modi ratione consequuntur aliquam corporis qui similique
           incidunt?
           <span className="text-xs block mt-1">3 min ago</span>
-          <div className="absolute right-2 -bottom-2 px-2 py-1 bg-slate-200 rounded-full content-2 cursor-pointer">
+          <div className="absolute right-1 -bottom-2 px-2 py-1 bg-slate-200 rounded-full content-2 cursor-pointer">
             <MdOutlineAddReaction />
           </div>
         </div>

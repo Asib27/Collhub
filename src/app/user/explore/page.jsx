@@ -1,7 +1,17 @@
+"use client";
+
+import RepoCard from "@/app/ui/repos/RepoCard";
 import TeamCard from "@/app/ui/teams/TeamCard";
-import React from "react";
+import { cn } from "@/utils/cn";
+import React, { useState } from "react";
 
 const Explore = () => {
+  const [activeFilter, setActiveFilter] = useState([]);
+
+  const handleActiveFilter = (active) => {
+    setActiveFilter();
+  };
+
   return (
     <div>
       <div>
@@ -19,23 +29,39 @@ const Explore = () => {
         </dib>
 
         <h3 className="section-header mt-10 mb-6">Recommended For You</h3>
+
+        <div className="items-center flex gap-3 mb-8">
+          <p
+            className={cn(
+              "px-4 py-1.5 rounded shadow hover:shadow-xl transition duration-300 bg-2 border border-emerald-600 cursor-pointer"
+            )}
+            onClick={() => handleActiveFilter()}
+          >
+            Coding
+          </p>
+          <p
+            className={cn(
+              "px-4 py-1.5 rounded shadow hover:shadow-xl transition duration-300 bg-2 border border-emerald-600 cursor-pointer"
+            )}
+            onClick={() => handleActiveFilter()}
+          >
+            Design
+          </p>
+        </div>
+
         <div className="flex flex-wrap gap-4">
           <TeamCard />
           <TeamCard />
           <TeamCard />
           <TeamCard />
         </div>
-
-        <h3 className="section-header mt-10 mb-6">Coding Teams</h3>
-        <div className="flex flex-wrap gap-4">
-          <TeamCard />
-          <TeamCard />
-        </div>
-
-        <h3 className="section-header mt-10 mb-6">Design Teams</h3>
-        <div className="flex flex-wrap gap-4">
-          <TeamCard />
-          <TeamCard />
+        <div className="grid grid-cols-2 gap-y-6 gap-x-16 mt-12">
+          <RepoCard />
+          <RepoCard />
+          <RepoCard />
+          <RepoCard />
+          <RepoCard />
+          <RepoCard />
         </div>
       </div>
     </div>

@@ -4,7 +4,13 @@ import { cn } from "@/utils/cn";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { FiHome, FiLogOut, FiSettings } from "react-icons/fi";
+import {
+  FiHome,
+  FiLogOut,
+  FiMessageSquare,
+  FiSearch,
+  FiSettings,
+} from "react-icons/fi";
 
 const Leftbar = ({ active = "" }) => {
   return (
@@ -40,6 +46,16 @@ const options = [
     name: "Home",
     link: "home",
     icon: () => <FiHome />,
+  },
+  {
+    name: "Explore",
+    link: "explore",
+    icon: () => <FiSearch />,
+  },
+  {
+    name: "Chat",
+    link: "chat",
+    icon: () => <FiMessageSquare />,
   },
   {
     name: "Settings",

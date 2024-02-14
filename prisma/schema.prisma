@@ -29,13 +29,11 @@ model team {
 
 
 model team_user {
-  user_id     Int
-  team_id     Int
   role        String @db.VarChar(50)
-  user        user?  @relation(fields: [userUser_id], references: [user_id])
-  userUser_id Int?
-  team        team?  @relation(fields: [teamTeam_id], references: [team_id])
-  teamTeam_id Int?
+  user        user  @relation(fields: [user_id], references: [user_id])
+  user_id Int
+  team        team  @relation(fields: [team_id], references: [team_id])
+  team_id Int
 
   @@id([user_id, team_id])
 }
@@ -53,16 +51,15 @@ model repo {
 enum Repo_type {
   code
   design
+  art
 }
 
 model repo_user {
-  user_id     Int
-  repo_id     Int
   role        String @db.VarChar(50)
-  user        user?  @relation(fields: [userUser_id], references: [user_id])
-  userUser_id Int?
-  repo        repo?  @relation(fields: [repoRepo_id], references: [repo_id])
-  repoRepo_id Int?
+  user        user @relation(fields: [user_id], references: [user_id])
+  user_id Int
+  repo        repo  @relation(fields: [repo_id], references: [repo_id])
+  repo_id Int
 
   @@id([repo_id, user_id])
 }

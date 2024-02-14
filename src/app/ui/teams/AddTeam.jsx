@@ -29,7 +29,7 @@ const AddTeam = () => {
 
   return (
     <div>
-      <h3 className="section-header mb-8">Add Repository</h3>
+      <h3 className="section-header mb-8">Create Team</h3>
       <form>
         <input
           type="text"

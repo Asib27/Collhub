@@ -66,7 +66,7 @@ yarn run dev
 }
 ```
 
-- create repo
+- [ ] create repo
 
 ```
 {
@@ -131,6 +131,7 @@ yarn run dev
 
 - team, repo -> create, put/patch, delete, get
 - auth, user
+- messages
 
 #### Not sure
 

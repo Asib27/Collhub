@@ -160,13 +160,16 @@ async function getLatestCommitHash(folderpath){
 }
 
 
-export async function commit(folderpath, commitMessage) {
-    const treeHash = await createTreeObjectsFromPaths(folderpath, '.');
-    const parentHash = await getLatestCommitHash(folderpath);
-    const author = 'test';
-    const committer = 'test';
-    const commitDate = Date.now();
-    const commitContent = `tree ${treeHash}\nparent ${parentHash}\nauthor ${author}\ncommitter ${committer}\ncommit date ${commitDate}\n${commitMessage}`;
+export async function commit(folderpath, commitMessage, committer) {
+  console.log('1')
+  const treeHash = await createTreeObjectsFromPaths(folderpath, '.');
+  console.log('2')
+  const parentHash = await getLatestCommitHash(folderpath);
+  console.log('3')
+  const author = 'test';
+  const commitDate = Date.now();
+  const commitContent = `tree ${treeHash}\nparent ${parentHash}\nauthor ${author}\ncommitter ${committer}\ncommit date ${commitDate}\n${commitMessage}`;
+  console.log('4')
     
     const hash = crypto.createHash("sha1");
     hash.update(commitContent);

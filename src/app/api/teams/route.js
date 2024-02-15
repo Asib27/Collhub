@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { runShellCommand } from "../shell";
 
 import { PrismaClient } from "@prisma/client";
+import { data } from "autoprefixer";
 const prisma = new PrismaClient()
 
 /**
@@ -30,17 +31,40 @@ export const GET = async () => {
 export const POST = async (req) => {
   const body = await req.json();
 
+  let team;
   try {
-    const data = await prisma.team.create({
+    team = await prisma.team.create({
       data: {
         name: body.name,
       }
-    })
+    });
   } catch {
     return new NextResponse(
       JSON.stringify({
         status: 'failure',
-        message: 'team name or email already exists'
+        message: 'team name already exists'
+      }),
+      {status: 200}
+    )
+  }
+
+  // console.log(team.team_id);
+
+  // console.log(team);
+
+  try {
+    await prisma.team_user.create({
+      data: {
+        user_id: body.user_id,
+        team_id: team.team_id,
+        role: "author",
+      }
+    });
+  } catch {
+    return new NextResponse(
+      JSON.stringify({
+        status: 'failure',
+        message: 'cannot create team_user instance'
       }),
       {status: 200}
     )
@@ -50,7 +74,6 @@ export const POST = async (req) => {
   const output = runShellCommand('echo $?')
 
   if(output === '0\n'){
-    
     return new NextResponse(
       JSON.stringify({
         status: 'success'

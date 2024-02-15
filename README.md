@@ -25,59 +25,74 @@ yarn run dev
 
 #### API needed
 
-- [ ] list of teams of an user
+- [x] list of teams of an user
 
 ```
 [
     {
-        id: "1",
-        name: "team 1",
+        "team_id": 1,
+        "name": "qwerty"
     },
+    {
+        "team_id": 2,
+        "name": "my group"
+    },
+    {
+        "team_id": 7,
+        "name": "test team"
+    }
 ]
 ```
 
-- [ ] list of repos of an user
+- [x] list of repos of an user
 
+route: http://localhost:3000/api/user/:user_id/repos
 ```
 [
     {
-        id: "1",
-        name: "repo 1",
-        type: "coding",
-        isPrivate: true,
-        lastUpdated: "2-1-24",
-        isStared: true,
-        teamName: "team 1",
-        owner:
-        {
-            id: "1",
-            name: "owner name"
+        "id": 1,
+        "name": "myrepo",
+        "type": "code",
+        "lastUpdated": "2024-02-14T20:04:19.430Z",
+        "owner": {
+            "id": 1,
+            "name": "john_dow"
+        }
+    },
+    {
+        "id": 2,
+        "name": "myproject",
+        "type": "design",
+        "lastUpdated": "2024-02-14T20:04:20.001Z",
+        "owner": {
+            "id": 2,
+            "name": "avi_dewan"
         }
     }
 ]
 ```
 
-- [ ] create team
+- [x] create team
 
 ```
 {
     name: "team name",
-    userId: "1",
+    user_id: "1",
 }
 ```
 
-- [ ] create repo
+- [x] create repo
 
 ```
 {
     name: "repo name",
     type: "coding",
     isPrivate: true,
-    userId: "1"
+    user_id: "1"
 }
 ```
 
-- [ ] get a team by teamId
+- [x] get a team by teamId
 
 ```
 {
@@ -120,7 +135,7 @@ yarn run dev
 }
 ```
 
-- [ ] add member to a team
+- [x] add member to a team
 
 ```
 {

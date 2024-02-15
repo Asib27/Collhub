@@ -22,9 +22,21 @@ export const GET = async (req, {params}) => {
 
 export const POST = async (req, {params}) => {
   const userId = params.user_id; 
-  const repoid = params.repoid;
-  const body = await req.json(); 
+  const repoid =  params.repoid;
+  const folderpath = getFilePath(userId, repoid, true)
+  // const body = await req.json(); 
 
+  const formData = await req.formData();
+  const files = formData.getAll("files");
+
+  files.forEach(async (f) => {
+    console.log(f);
+
+    const bytes = await f.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    fs.writeFileSync(folderpath + '/' + f.name, buffer)
+  });
 
   return new NextResponse(
     JSON.stringify(files),

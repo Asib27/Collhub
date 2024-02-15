@@ -3,6 +3,7 @@
 import RepoFlow from "@/app/ui/repos/RepoFlow";
 import SingleCommit from "@/app/ui/repos/SingleCommit";
 import axios from "axios";
+import { useParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -15,6 +16,8 @@ const SingRepoPage = () => {
 
   const inputFileRef = useRef();
   const inputFolderRef = useRef();
+
+  const {repoId} = useParams()
 
   useEffect(() => {
     setMounted(true);
@@ -33,7 +36,7 @@ const SingRepoPage = () => {
       console.log(folder);
 
       try {
-        const res = await axios.post("/api/test", formData);
+        const res = await axios.post("/api/user/1/repos/" + repoId, formData);
         console.log(res.data);
         toast.success("Folder uploaded successfully");
         setStage((prev) => prev + 1);

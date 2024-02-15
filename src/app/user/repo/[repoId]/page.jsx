@@ -63,7 +63,7 @@ const SingRepoPage = () => {
         />
 
         <div className="flex flex-col gap-y-3">
-          {/* <SingleCommit folder={folder} /> */}
+          <SingleCommit folder={folder} />
           {/* <SingleCommit />
         <SingleCommit />
         <SingleCommit /> */}

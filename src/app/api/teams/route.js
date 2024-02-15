@@ -4,7 +4,7 @@ import { runShellCommand } from "../shell";
 
 import { PrismaClient } from "@prisma/client";
 import { data } from "autoprefixer";
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 /**
  * @swagger
@@ -21,12 +21,14 @@ const prisma = new PrismaClient()
  *         description: {team1}
  */
 export const GET = async () => {
-  const teams = await prisma.team.findMany();
-  return new NextResponse(
-    JSON.stringify(teams),
-    {status: 200}
-  )
-}
+  try {
+    const teams = await prisma.team.findMany();
+    return new NextResponse(JSON.stringify(teams), { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return new NextResponse({ error }, { status: 500 });
+  }
+};
 
 export const POST = async (req) => {
   const body = await req.json();
@@ -36,16 +38,16 @@ export const POST = async (req) => {
     team = await prisma.team.create({
       data: {
         name: body.name,
-      }
+      },
     });
   } catch {
     return new NextResponse(
       JSON.stringify({
-        status: 'failure',
-        message: 'team name already exists'
+        status: "failure",
+        message: "team name already exists",
       }),
-      {status: 200}
-    )
+      { status: 200 }
+    );
   }
 
   // console.log(team.team_id);
@@ -58,35 +60,35 @@ export const POST = async (req) => {
         user_id: body.user_id,
         team_id: team.team_id,
         role: "author",
-      }
+      },
     });
   } catch {
     return new NextResponse(
       JSON.stringify({
-        status: 'failure',
-        message: 'cannot create team_user instance'
+        status: "failure",
+        message: "cannot create team_user instance",
       }),
-      {status: 200}
-    )
+      { status: 200 }
+    );
   }
 
-  runShellCommand(`mkdir -p files/${body.name}`)
-  const output = runShellCommand('echo $?')
+  runShellCommand(`mkdir -p files/${body.name}`);
+  const output = runShellCommand("echo $?");
 
-  if(output === '0\n'){
+  if (output === "0\n") {
     return new NextResponse(
       JSON.stringify({
-        status: 'success'
+        status: "success",
       }),
-      {status: 200}
-    )
+      { status: 200 }
+    );
   } else {
     return new NextResponse(
       JSON.stringify({
-        status: 'failure',
-        message: 'cannot create directory'
+        status: "failure",
+        message: "cannot create directory",
       }),
-      {status: 200}
-    )
+      { status: 200 }
+    );
   }
-}
+};

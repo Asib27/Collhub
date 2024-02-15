@@ -1,8 +1,10 @@
 import Link from "next/link";
 import React from "react";
 import { FiStar } from "react-icons/fi";
+import moment from "moment";
 
-const RepoCard = () => {
+const RepoCard = ({ repo }) => {
+  console.log(repo);
   return (
     <div className="flex justify-between items-center border-b border-emerald-600 p-2">
       {/* left */}
@@ -12,7 +14,7 @@ const RepoCard = () => {
             href={`/user/repo/${"repoId"}`}
             className="font-semibold hover:content-highlight transition duration-300"
           >
-            Repository Name
+            {repo.name}
           </Link>
           <div className="px-2 py-[2px] rounded-full border border-emerald-900 text-xs">
             Private
@@ -22,9 +24,11 @@ const RepoCard = () => {
         <div className="mt-2 text-sm flex items-center gap-x-8">
           <div className="flex items-center gap-x-2">
             <div className="w-3 h-3 rounded-full bg-amber-400" />
-            Coding
+            {repo.type}
           </div>
-          <p className="content-3">Updated 3d ago</p>
+          <p className="content-3">
+            Updated {moment(repo.updatedAt).startOf("hour").fromNow()}
+          </p>
         </div>
       </div>
 
@@ -33,7 +37,10 @@ const RepoCard = () => {
         <span className="ml-auto">
           <FiStar />
         </span>
-        <p>Team / Owner</p>
+        <p>
+          Owner:{" "}
+          {repo?.users?.filter((u) => u.role === "author")?.at(0).user.name}
+        </p>
       </div>
     </div>
   );

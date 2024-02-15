@@ -50,7 +50,7 @@ const LeftExplorer = ({ folder = {} }) => {
   }, [folder]);
 
   console.log(files);
-  return <FileBrowser files={files} icons={Icons.FontAwesome(4)} />;
+  return <FileBrowser files={[]} icons={Icons.FontAwesome(4)} />;
 };
 
 /*

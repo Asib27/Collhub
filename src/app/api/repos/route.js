@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { runShellCommand } from "../shell";
 
 import { PrismaClient } from "@prisma/client";
-import { init } from "../git";
+import { getFilePath, init } from "../git";
 const prisma = new PrismaClient()
 
 export const GET = async () => {
@@ -57,8 +57,9 @@ export const POST = async (req, res) => {
     }
   })
 
-  runShellCommand(`mkdir -p files/users/${user_id}/${body.name}`)
-  init(`files/users/${user_id}/${body.name}`)
+  const filepath = getFilePath(user_id, repo.repo_id, true);
+  runShellCommand(`mkdir -p ${filepath}`)
+  init(filepath)
 
   return new NextResponse(
     JSON.stringify({

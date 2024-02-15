@@ -216,3 +216,11 @@ export async function checkout(folderpath, commitHash) {
   // create the files and folders based on address on the blob
   createFilesAndFolders(baseTree, folderpath);
 }
+
+export function getFilePath(userId, repoid , users) {
+  if (users){
+    return `files/users/${userId}/${repoid}`;
+  } else {
+    return `files/teams/${userId}/${repoid}`;
+  }
+}

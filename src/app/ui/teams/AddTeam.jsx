@@ -1,8 +1,10 @@
 "use client";
 
 import { ModalContext } from "@/contexts/ModalContext";
+import axios from "axios";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import Loader from "../common/Loader";
 
 const AddTeam = () => {
   const [name, setName] = useState("");
@@ -16,7 +18,7 @@ const AddTeam = () => {
 
     try {
       setLoading(true);
-      console.log(name);
+      await axios.post(`/api/teams`, { name });
       toast.success("Team created");
     } catch (error) {
       console.log(error);

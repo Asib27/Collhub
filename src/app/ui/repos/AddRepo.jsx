@@ -4,6 +4,7 @@ import React, { useContext, useState } from "react";
 import Loader from "../common/Loader";
 import toast from "react-hot-toast";
 import { ModalContext } from "@/contexts/ModalContext";
+import axios from "axios";
 
 const AddRepo = () => {
   const [name, setName] = useState("");
@@ -18,7 +19,7 @@ const AddRepo = () => {
 
     try {
       setLoading(true);
-      console.log(name, type);
+      await axios.post(`/api/repos`, { name, type });
       toast.success("Repository created");
     } catch (error) {
       console.log(error);

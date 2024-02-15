@@ -76,7 +76,7 @@ export const POST = async (req, {params}) => {
   const role_user = await prisma.repo_user.create({
     data: {
       repo_id: repo.repo_id,
-      user_id: user_id,
+      user_id: Number(user_id),
       role: "author",
     },
   });

@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowRight } from "react-icons/md";
 import Editor from "./Editor";
 
-const SingleCommit = () => {
-  const [collapsed, setCollapsed] = useState(true);
+const SingleCommit = ({ folder }) => {
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
     <div className="bg-slate-200 rounded-md px-6 py-4">
@@ -16,8 +16,8 @@ const SingleCommit = () => {
             setCollapsed((prev) => !prev);
           }}
         >
-          {!collapsed && <MdKeyboardArrowRight size={28} />}
-          {collapsed && <MdKeyboardArrowDown size={28} />}
+          {collapsed && <MdKeyboardArrowRight size={28} />}
+          {!collapsed && <MdKeyboardArrowDown size={28} />}
         </div>
         <div className="flex-1">
           <p className="text-lg">Message: message</p>
@@ -30,7 +30,7 @@ const SingleCommit = () => {
 
       {!collapsed && (
         <div className="border-t border-slate-500 mt-4 p-4">
-          <Editor />
+          <Editor folder={folder} />
         </div>
       )}
     </div>
